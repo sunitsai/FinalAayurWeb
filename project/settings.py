@@ -25,7 +25,7 @@ SECRET_KEY = 'y03gpy4^7debybrc7up90(=4&!xyy(_-mz(ipwf2msj^2xbwi1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aayur',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'ketangohel$aayur',
+        'USER': 'ketangohel',
+        'PASSWORD': 'aayurtree123',
+        'HOST': 'ketangohel.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
