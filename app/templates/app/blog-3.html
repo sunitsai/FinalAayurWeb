@@ -10,6 +10,7 @@
         <div class="auto-container">
             <div class="title">
                 <h1>Aayurtree Blogs</h1>
+                <!-- <p>Current Page :</p> -->
             </div>
         </div>
     </div>
@@ -31,8 +32,8 @@
         <div class="row clearfix">
             <div class="col-lg-8 col-md-12 col-sm-12 content-side">
                 <div class="blog-standard-content">
-                    {% if key2 %}
-                    {% for i in key2 %}
+                    {% if page %}
+                    {% for i in page.object_list %}
                     <div class="news-block-one">
                         <div class="inner-box">
                             <!-- <figure class="image-box"> -->
@@ -59,15 +60,29 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     {% endfor %}
                     {% endif %}
 
                     <div class="pagination-wrapper">
                         <ul class="pagination">
-                            <li><a href="clinic-1.html" class="current">1</a></li>
-                            <li><a href="clinic-1.html">2</a></li>
-                            <li><a href="clinic-1.html">3</a></li>
-                            <li><a href="clinic-1.html"><i class="icon-Arrow-Right"></i></a></li>
+                            {% if page.has_previous %}
+                            <li><a href="{% url 'blogpage' %}?page={{page.previous_page_number}}"><i
+                                        class="icon-Arrow-Left"></i></a></li>
+                            <li><a
+                                    href="{% url 'blogpage' %}?page={{page.previous_page_number}}">{{page.previous_page_number}}</a>
+                            </li>
+                            {% endif %}
+                            <li><a href="{% url 'blogpage' %}?page={{page.number}}"
+                                    class="current">{{page.number}}</a></li>
+
+                            {% if page.has_next %}
+                            <li><a
+                                    href="{% url 'blogpage' %}?page={{page.next_page_number}}">{{page.next_page_number}}</a>
+                            </li>
+                            <li><a href="{% url 'blogpage' %}?page={{page.next_page_number}}"><i
+                                        class="icon-Arrow-Right"></i></a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>

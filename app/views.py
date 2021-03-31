@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect, reverse, redirect
+from django.core.paginator import Paginator
 from .models import *
 
 # Create your views here.
@@ -195,13 +196,19 @@ def BecomeSellerPage(request):
 def BlogPage(request):
     all_blog = Post.objects.all()
     all_cat = Category.objects.all()
-    return render(request, "app/blog-3.html", {'key2': all_blog, 'key3': all_cat})
+
+    blog_pagination = Paginator(all_blog, 5)
+
+    page_num = request.GET.get('page')
+
+    page = blog_pagination.get_page(page_num)
+
+    # return render(request, "app/blog-3.html", {'key2': all_blog, 'key3': all_cat})
+    return render(request, "app/blog-3.html", {'count': blog_pagination.count, 'key3': all_cat, 'page': page})
 
 
 def AboutUs(request):
     return render(request, "app/about-element-1.html")
-
-
 
 
 def BlogDetails(request, pk):
